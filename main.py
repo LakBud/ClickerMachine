@@ -81,61 +81,62 @@ def update_toggle_key():
 
 # ---------------------------------------GUI-----------------------------------------
 
-root = tk.Tk()
-root.geometry("300x350")
-root.title("ClickerMachine")
-root.resizable(False, False)
-root.configure(bg="#2c3e50")
+def main():
+    global run_button, interval_input, toggle_entry
 
-default_font = tk.font.nametofont("TkDefaultFont")
-default_font.configure(family="Arial")
+    root = tk.Tk()
+    root.geometry("300x350")
+    root.title("ClickerMachine")
+    root.resizable(False, False)
+    root.configure(bg="#2c3e50")
+
+    default_font = font.nametofont("TkDefaultFont")
+    default_font.configure(family="Arial")
+
+    # Header
+    main_header = tk.Label(root, text="ClickerMachine", font=("Arial", 20))
+    main_header.pack(padx=10, pady=10)
+
+    main_frame = tk.Frame(root, bg="#273440")
+    main_frame.pack(padx=10, pady=10)
+
+    # CPS input
+    interval_frame = tk.Frame(main_frame)
+    interval_frame.pack(padx=10, pady=10)
+
+    interval_label = tk.Label(interval_frame, text="Clicks per Second (CPS):")
+    interval_label.pack()
+
+    interval_input = tk.Entry(interval_frame)
+    interval_input.pack()
+    interval_input.insert(0, "10")
+
+    # Toggle key input
+    key_frame = tk.Frame(main_frame, bg="#273440")
+    key_frame.pack(pady=5)
+
+    key_label = tk.Label(key_frame, text="Toggle Key (press a single character):")
+    key_label.pack()
+    toggle_entry = tk.Entry(key_frame)
+    toggle_entry.pack()
+    toggle_entry.insert(0, "t")  # default
+
+    update_key_button = tk.Button(key_frame, text="Set Toggle Key", command=update_toggle_key)
+    update_key_button.pack(pady=5)
+
+    # Control Buttons
+    control_frame = tk.Frame(main_frame, bg="#273440")
+    control_frame.pack(pady=20)
+
+    run_button = tk.Button(control_frame, text="Start", command=on_start)
+    run_button.pack(side=tk.LEFT, padx=10)
+
+    disable_button = tk.Button(control_frame, text="Stop", command=stop_clicking)
+    disable_button.pack(side=tk.LEFT, padx=10)
+
+    start_hotkey_listener()
+    root.mainloop()
 
 
-# Header
-main_header = tk.Label(root, text="ClickerMachine", font=("Arial", 20))
-main_header.pack(padx=10, pady=10)
-
-main_frame = tk.Frame(root, bg="#273440")
-main_frame.pack(padx=10, pady=10)
-
-
-# CPS input
-interval_frame = tk.Frame(main_frame)
-interval_frame.pack(padx=10, pady=10)
-
-interval_label = tk.Label(interval_frame, text="Clicks per Second (CPS):")
-interval_label.pack()
-
-interval_input = tk.Entry(interval_frame)
-interval_input.pack()
-interval_input.insert(0, "10")
-
-# Toggle key input
-key_frame = tk.Frame(main_frame, bg="#273440")
-key_frame.pack(pady=5)
-
-key_label = tk.Label(key_frame, text="Toggle Key (press a single character):")
-key_label.pack()
-toggle_entry = tk.Entry(key_frame)
-toggle_entry.pack()
-toggle_entry.insert(0, "t")  # default
-
-
-update_key_button = tk.Button(key_frame, text="Set Toggle Key", command=update_toggle_key)
-update_key_button.pack(pady=5)
-
-
-# Control Buttons
-control_frame = tk.Frame(main_frame, bg="#273440")
-control_frame.pack(pady=20)
-
-run_button = tk.Button(control_frame, text="Start", command=on_start)
-run_button.pack(side=tk.LEFT, padx=10)
-
-disable_button = tk.Button(control_frame, text="Stop", command=stop_clicking)
-disable_button.pack(side=tk.LEFT, padx=10)
-
-
-
-start_hotkey_listener()
-root.mainloop()
+if __name__ == "__main__":
+    main()
