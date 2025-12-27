@@ -1,0 +1,9 @@
+[project]
+name = "clickermachine"
+version = "0.1.0"
+description = "ClickerMachine is a simple and customizable **autoclicker** built in Python using Tkinter for the GUI and pynput for mouse and keyboard control. It allows users to simulate mouse clicks at a configurable speed (CPS – Clicks Per Second) and toggle the autoclicking functionality with a customizable hotkey."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pynput>=1.8.1",
+]
